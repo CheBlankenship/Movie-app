@@ -2,13 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="movie.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="js/angular.js"></script>
     <script src="js/ajax.js"></script>
     <script src="js/angular-ui-router.js"></script>
     <title>movie</title>
   </head>
-  <body>
-    <div ng-app="movie" ng-controller = "MovieController">
+  <body ng-app="movie">
+    <h1 class="search"><a ui-sref="search">search</a></h1>
+        <!-- <div ng-app="movie" ng-controller = "MovieController">
         <button ng-click="getNowPlaying()">Now playing</button>
         <ul ng-repeat="result in results">
             <li>{{result.title}}</li>
@@ -17,13 +20,17 @@
     <br>
         <input type="text" ng-model="movieId">
         <button ng-click="getDetails()">Get movie details</button>
-        <li>{{details.title}}</li>
+        <li>Title: {{details.title}} <br>Popularity: {{details.popularity}}</li>
         <br>
-        <input type="text" ng-model="query">
-        <button ng-click="search()">Search Results</button>
+        <form ng-submit="search()">
+          <input type="text" ng-model="query">
+        </form>
         <ul ng-repeat="result in searchResult">
           <li>{{result.title}}</li>
         </ul>
-    </div>
+    </div> -->
+
   </body>
+  <ui-view></ui-view>
+
 </html>

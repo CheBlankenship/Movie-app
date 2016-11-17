@@ -1,4 +1,4 @@
-var app = angular.module('movie', []);
+var app = angular.module('movie', ['ui.router']);
 
 app.factory('Movie', function factoryFunction($http) {
   var service = {};
@@ -48,4 +48,59 @@ app.controller('MovieController', function($scope, Movie) {
       console.log($scope.searchResult);
     });
   };
+});
+
+
+app.controller('searchController', function($scope, $state){
+  $scope.searchMovie = function() {
+    $state.go('searchResult', {query: $scope.search});
+  };
+});
+
+app.controller('searchResultController', function($scope, $stateParams, Movie) {
+  $scope.search = $stateParams.query;
+  Movie.search($scope.search).success(function(search) {
+    $scope.results = search.results;
+    console.log($scope.results);
+  });
+});
+
+app.controller('IndividualPageController', function($scope, $stateParams, Movie) {
+  $scope.movieId = $stateParams.movieId;
+  Movie.details($scope.movieId).success(function(details) {
+    $scope.details = details;
+  });
+
+
+});
+
+
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+  .state({
+    name: 'home',
+    url: '/',
+    templateUrl: 'home.html'
+  })
+  .state({
+    name: 'search',
+    url: '/search',
+    templateUrl: 'searchPage.html',
+    controller: 'searchController'
+  })
+  .state({
+    name: 'searchResult',
+    url: '/search/{query}',
+    templateUrl: 'searchResult.html',
+    controller: 'searchResultController'
+  })
+  .state({
+    name: 'movieInfo',
+    url: '/{movieId}',
+    templateUrl: 'individualPage.html',
+    controller: 'IndividualPageController'
+  });
+
+  $urlRouterProvider.otherwise('/');
 });

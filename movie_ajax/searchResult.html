@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="movie.css">
+<h1>searchResult</h1>
+<div ng-controller="searchResultController">
+  <ul>
+      <li ng-repeat="result in results" class="wrapper">
+        <h2 class="movieTitle">{{result.title}}</h2>
+        <img src="https://image.tmdb.org/t/p/w300{{result.poster_path}}" ui-sref="movieInfo({movieId: result.id})" ng-if="result.title" alt="{{result.title}}"/>
+      </li>
+  </ul>
+</div>

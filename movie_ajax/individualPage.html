@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="movie.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-7 about">
+    <h1>{{details.title}}</h1>
+    <h3>{{details.release_date}}</h3>
+    <h3>{{details.overview}}</h3>
+  </div>
+  <div class="col-lg-4 pic">
+    <img src="https://image.tmdb.org/t/p/w300{{details.poster_path}}" ui-sref="movieInfo({movieId: details.id})" ng-if="details.title" alt="{{details.title}}"/>
+  </div>
+</div>
